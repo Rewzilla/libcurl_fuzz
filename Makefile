@@ -1,7 +1,7 @@
 
 export CC			:= clang
 export CXX			:= clang++
-export CFLAGS		:= -g #-fsanitize=address
+export CFLAGS		:= -O3 -fsanitize=address
 export CURLDIR		:= curl-7.59.0
 
 all: fuzzer

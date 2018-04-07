@@ -1,5 +1,5 @@
 # libcurl_fuzz
-Very simple fuzzer for the libcurl URL parser
+Very simple grammer-based fuzzer for the libcurl URL parser
 
 # Setup
 

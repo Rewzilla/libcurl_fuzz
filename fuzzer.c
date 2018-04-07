@@ -60,25 +60,47 @@ int main(int argc, char *argv[]) {
 
 	char *test;
 	CURL *curl;
+
 	pid_t pid;
 	int status;
+
+	unsigned int start;
+	unsigned long execs, crashes;
+
+	printf("\n");
+	printf("\e[34;1mlibcurl fuzzer\e[0m\n");
+	printf("Andrew Kramer (andrew at jmpesp dot org)\n");
+	printf("\n");
 
 	srand(time(0));
 	curl = curl_easy_init();
 
-	while(1) {
+	start = time(0);
+	execs = 0;
+	crashes = 0;
+
+	for(execs=0 ; ; execs++) {
 
 		test = generate_test();
 
 		if((pid = fork())) {
 			waitpid(pid, &status, 0);
 			if(status != 0) {
+				crashes++;
 				log_crash(test);
 				printf("Crash!!!  (%s)\n", test);
 			}
 			free(test);
 		} else {
 			run_test(curl, test);
+		}
+
+		if(execs % 23 == 0) {
+			printf("Stats: execs=%lu | crashes=%s%lu%s | execs/sec=%03.2f %s\r",
+				execs,
+				crashes != 0 ? "\e[31;1m" : "", crashes, "\e[0m",
+				(float)execs / (time(0) - start), "        "
+			);
 		}
 
 	}
