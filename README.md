@@ -10,7 +10,7 @@ Untar it, and set the directory name in your Makefile
 ```make libcurl && make```
 
 # Running
-./fuzzer
+```./fuzzer```
 
 # Crashes
 Crashes will be stored in a directory called ```./crashes```.  Each file will contain one crashing URL.
