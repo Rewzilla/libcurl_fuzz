@@ -57,12 +57,39 @@ char *n_ptype() {
 			p = strappend(p, t_junk());
 			break;
 		default:
-			switch(rn(2)) {
+			switch(rn(11)) {
 				case 0:
-					p = strappend(p, strdup("http"));
+					p = strappend(p, strdup("dict"));
 					break;
 				case 1:
 					p = strappend(p, strdup("file"));
+					break;
+				case 2:
+					p = strappend(p, strdup("ftp"));
+					break;
+				case 3:
+					p = strappend(p, strdup("gopher"));
+					break;
+				case 4:
+					p = strappend(p, strdup("http"));
+					break;
+				case 5:
+					p = strappend(p, strdup("imap"));
+					break;
+				case 6:
+					p = strappend(p, strdup("pop3"));
+					break;
+				case 7:
+					p = strappend(p, strdup("rtsp"));
+					break;
+				case 8:
+					p = strappend(p, strdup("smb"));
+					break;
+				case 9:
+					p = strappend(p, strdup("telnet"));
+					break;
+				case 10:
+					p = strappend(p, strdup("tfpt"));
 					break;
 			}
 	}
